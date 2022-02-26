@@ -1,7 +1,6 @@
 .forum-container{
-    background-color: #dbf5fd;
-    height:60vh;
-    font-style: Century Gothic;
+    background: linear-gradient(#dbf5fd, #fffcfc);
+    height:100vh;
 }
 .forum-content{
     padding-top:6rem;

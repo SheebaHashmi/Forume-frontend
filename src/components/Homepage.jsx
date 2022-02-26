@@ -5,7 +5,7 @@ function Homepage() {
         <div className="forum-container">
             <div className="forum-content">
                 <h1 className="text-center fw-bolder">Welcome to Forume</h1>
-                <form className="container card col-10 col-md-8 offset-md-2 my-5 p-4">
+                <form className="container card my-5 py-4">
                     <div className="row">
                         <div className="col-12 col-md-6 mb-2 offset-md-3">
                             <label className="form-label fw-bold">Username:</label>

@@ -6,7 +6,7 @@ function Profile() {
 
                 <h1 className="text-center fw-bolder">User Profile</h1>
 
-                <div className="container card col-10 col-md-8 offset-md-2 my-5 py-5 ">
+                <div className="container card my-5 py-5 ">
                     <div className="card-body">
                         <h4 className="fw-bold">Username: Blaise</h4>
                         <h4 className="fw-bold">Fullname: Blaiso kittywfafasf</h4>
