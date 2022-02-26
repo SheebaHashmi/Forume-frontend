@@ -6,7 +6,7 @@ function EditProfile() {
             <div className="forum-content">
 
                 <h1 className="text-center fw-bolder">Edit Profile</h1>
-                <form className="container card my-5 py-4">
+                <form className="container card col-11 my-5 py-4">
 
                     <div className="row">
                         <div className="col-12 col-md-6 mb-2 offset-md-3">
