@@ -2,9 +2,10 @@ import { Link } from 'react-router-dom';
 
 function SignUp() {
   return (
-    <div className="SignUp">
+    <div className="forum-container">
+      <div className="forum-content">
       <h1 className="text-center">Create New Account</h1>
-      <form className="container">
+      <form className="container card col-10 col-md-8 offset-md-2 my-5 p-4">
         <div className="row">
           <div className="col-12 col-md-6 mb-2 offset-md-3">
             <label className="form-label">Fullname: </label>
@@ -48,14 +49,15 @@ function SignUp() {
 
         </div>
         <div className="row">
-                <div className="col-12 col-md-3 offset-md-5">
+                <div className="col-12 col-md-3 offset-md-5 mt-3">
         <Link to={'/dashboard'}>
-          <button className="btn btn-primary" type="submit">Submit</button>
+          <button className="btn btn-primary px-5" type="submit">Submit</button>
         </Link>
                 </div>
         </div>
 
       </form>
+      </div>
     </div>
   );
 }

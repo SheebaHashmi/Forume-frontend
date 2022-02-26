@@ -1,2 +1,8 @@
-
+.forum-container{
+    background-color: #dbf5fd;
+    height:60vh;
+}
+.forum-content{
+    padding-top:10rem;
+}
 
