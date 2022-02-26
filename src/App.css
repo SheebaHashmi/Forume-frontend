@@ -1,8 +1,18 @@
 .forum-container{
     background-color: #dbf5fd;
     height:60vh;
+    font-style: Century Gothic;
 }
 .forum-content{
-    padding-top:10rem;
+    padding-top:6rem;
 }
-
+.card{
+    background-color: #e7e6e6;
+}
+.btn{
+    background-color: #7ae6b2 !important;
+    border:#7ae6b2   !important;
+}
+a{
+    text-decoration: none;
+}
