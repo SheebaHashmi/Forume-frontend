@@ -6,6 +6,8 @@ import { BrowserRouter,Routes,Route } from 'react-router-dom';
 import Homepage from './components/Homepage';
 import SignUp from './components/SignUp' 
 import Dashboard from './components/Dashboard';
+import Profile from './components/Profile';
+import EditProfile from './components/EditProfile';
 
 function App() {
   return (
@@ -15,6 +17,8 @@ function App() {
           <Route exact path = "/" element={<Homepage/>}/>
           <Route exact path = "/register" element={<SignUp/>}/>
           <Route exact path = "/dashboard" element={<Dashboard/>}/>
+          <Route exact path = "/profile" element={<Profile/>}/>
+          <Route exact path = "/editprofile" element={<EditProfile/>}/>
           
         </Routes>
       </BrowserRouter>
