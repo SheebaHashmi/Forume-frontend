@@ -6,6 +6,7 @@ An online forum for you and your buddies to post, administer and share thoughts 
 
 The following design template is created using Figma and is subjected to evolve with the development process.
 
-[Figma_link](https://www.figma.com/file/eNWazKPtVSnoMwEtFnPtCG/Forume?node-id=0%3A1)
+https://www.figma.com/file/eNWazKPtVSnoMwEtFnPtCG/Forume?node-id=0%3A1
+
 
 
