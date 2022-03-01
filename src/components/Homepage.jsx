@@ -2,15 +2,10 @@ import React,{useState} from 'react';
 import {useNavigate} from 'react-router-dom'
 import axios from 'axios'
 
-const initialValues = {
-    username:'',
-    password:''
-}
 
-function Homepage() {
+function Homepage(props) {
+    const {formValues,formErrors,setFormValues,setFormErrors} = props
     const [disabled,setDisabled] = useState(true)
-    const [formValues, setFormValues] = useState(initialValues)
-    const [formErrors,setFormErrors] = useState(initialValues)
     let navigate = useNavigate()
 
     const handleChange = (e) => {
@@ -27,7 +22,7 @@ function Homepage() {
         axios.post('https://forume-backend.herokuapp.com/api/auth/login',formValues)
         .then(res => {
             window.localStorage.setItem('token',res.data.token)
-            setFormErrors(initialValues)
+            setFormErrors("")
             navigate("/private/dashboard")
         })
         .catch(err => console.log(err))

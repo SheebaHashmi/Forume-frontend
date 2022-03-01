@@ -54,7 +54,7 @@ function EditProfile() {
                     </div>
                     <div className="row">
                         <div className="col-12 col-md-3 offset-md-5 mt-3">
-                            <Link to={'/profile'}>
+                            <Link to={'/private/profile'}>
                                 <button className="btn btn-primary px-5" type="submit">Submit</button>
                             </Link>
                         </div>

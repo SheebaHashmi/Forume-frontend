@@ -1,12 +1,16 @@
 import Posts from "./Posts";
 import {useEffect} from 'react'
+import { useNavigate } from "react-router-dom";
 import axiosWithAuth from "../utilis/axiosWithAuth";
 
-function Dashboard() {
+function Dashboard(props) {
+    const {username,posts,setPosts} = props
+    let navigate = useNavigate()
 
-    // useEffect(()=> {
-    //     axiosWithAuth().get()
-    // })
+    useEffect(()=> {
+        axiosWithAuth().get(`https://forume-backend.herokuapp.com/api/${username}/posts`)
+        .then(res => setPosts(res.data))
+    },[setPosts,username])
 
     return (
         <div className="forum-container">
@@ -15,8 +19,16 @@ function Dashboard() {
                 <div className="container-fluid">
                     <h1 className="navbar-brand fw-bolder">Forume</h1>
                     <div>
-                    <a className="navbar-text text-decoration-none fw-bold mx-2" href="/private/profile">Profile</a>
-                    <a className="navbar-text text-decoration-none fw-bold" href="/private/logout">Logout</a>
+                         <span className="navbar-text text-decoration-none fw-bold mx-2" 
+                            onClick={()=>navigate('/private/profile')}
+                        >
+                            Profile
+                        </span>
+                         <span className="navbar-text text-decoration-none fw-bold mx-2" 
+                            onClick={()=>navigate('/private/logout')}
+                        >
+                           Logout
+                        </span>
 
                     </div>
                 </div>
@@ -32,7 +44,9 @@ function Dashboard() {
 
                 <div className="row">
                     <div className="col-12 col-md-8 offset-md-2">
-                        <Posts />
+                        {
+                            posts.map(post => <Posts posts={post}/>)
+                        }
                     </div>
                 </div>
 

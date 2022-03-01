@@ -12,6 +12,6 @@
     background-color: #7ae6b2 !important;
     border:#7ae6b2   !important;
 }
-a{
-    text-decoration: none;
+span{
+    cursor: pointer;
 }
