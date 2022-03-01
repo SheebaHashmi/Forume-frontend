@@ -5,7 +5,7 @@ import axios from 'axios'
 
 
 function Homepage(props) {
-    const {formValues,formErrors,setFormValues,setFormErrors} = props
+    const {formValues,formErrors,setFormValues} = props
     const [disabled,setDisabled] = useState(true)
     let navigate = useNavigate()
 

@@ -1,14 +1,24 @@
-import { Link } from 'react-router-dom';
+import {useNavigate } from 'react-router-dom';
 import axiosWithAuth from '../utilis/axiosWithAuth';
 
 function EditProfile(props) {
     const {formValues,setFormValues}  = props
+    let navigate = useNavigate()
+
+    const handleChange = (e) => {
+        e.preventDefault()
+        setFormValues({
+            ...formValues,
+            [e.target.name]:e.target.value
+        })
+    }
 
     const handleSubmit = (e) => {
         e.preventDefault()
         axiosWithAuth().put(`https://forume-backend.herokuapp.com/${formValues.username}/profile`)
         .then(res => {
             setFormValues(res.data)
+            navigate('/private/profile')
         })
     }
 
@@ -26,6 +36,8 @@ function EditProfile(props) {
                                 type="text"
                                 name="fullname"
                                 className="form-control"
+                                value={formValues.fullname}
+                                onChange={handleChange}
                             />
                         </div>
                     </div>
@@ -37,6 +49,8 @@ function EditProfile(props) {
                                 type="text"
                                 name="email"
                                 className="form-control"
+                                value={formValues.email}
+                                onChange={handleChange}
                             />
                         </div>
                     </div>
@@ -48,6 +62,8 @@ function EditProfile(props) {
                                 type="text"
                                 name="username"
                                 className="form-control"
+                                value={formValues.username}
+                                onChange={handleChange}
                             />
                         </div>
 
@@ -59,13 +75,14 @@ function EditProfile(props) {
                                 type="text"
                                 name="password"
                                 className="form-control"
+                                value={formValues.password}
+                                onChange={handleChange}
                             />
                         </div>
                         
                     </div>
                     <div className="row">
                         <div className="col-12 col-md-3 offset-md-5 mt-3">
-                            <Link to={'/private/profile'}>
                                 <button 
                                     className="btn btn-primary px-5"
                                     type="submit"
@@ -73,7 +90,6 @@ function EditProfile(props) {
                                 >
                                     Submit
                                 </button>
-                            </Link>
                         </div>
                     </div>
 
