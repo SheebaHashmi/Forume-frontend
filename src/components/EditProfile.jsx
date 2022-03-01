@@ -27,7 +27,6 @@ function EditProfile(props) {
     useEffect(() => {
         axiosWithAuth().get(`https://forume-backend.herokuapp.com/api/${formValues.username}/profile`)
             .then(res => {
-                console.log(res.data)
                 setFormValues(res.data)
             })
     }, [setFormValues, formValues.username])

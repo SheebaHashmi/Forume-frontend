@@ -1,10 +1,17 @@
 import axiosWithAuth from "../utilis/axiosWithAuth";
-import {useNavigate} from 'react-router-dom'
+import {useEffect,useNavigate} from 'react-router-dom'
 import Navbar from "./Navbar";
 
-function AddPost(props){
+function EditPost(props){
     const {post, setPost,username} = props
     let navigate = useNavigate()
+
+    // useEffect(() => {
+    //     axiosWithAuth().get(`https://forume-backend.herokuapp.com/api/${username}/post/${post.post_id}`)
+    //         .then(res => {
+    //             setPost(res.data)
+    //         })
+    // }, [setPost, username, post.post_id])
 
     const handleChange = (e) => {
         e.preventDefault()
@@ -28,7 +35,7 @@ function AddPost(props){
         <div className="forum-container">
             <Navbar/>
             <div className="forum-content">
-                <h1 className="text-center fw-bolder">Add new post</h1>
+                <h1 className="text-center fw-bolder">Edit post</h1>
                 <form className="container card col-11 my-5 p-4">
                     <div className="row">
                         <div className="col-12 col-md-6 mb-2 offset-md-3">
@@ -69,4 +76,4 @@ function AddPost(props){
         </div>
     );
 }
-export default AddPost;
+export default EditPost;

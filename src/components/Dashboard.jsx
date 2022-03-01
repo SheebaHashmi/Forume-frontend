@@ -1,4 +1,4 @@
-import Posts from "./Posts";
+import Post from "./Post";
 import { useEffect } from 'react'
 import { useNavigate } from "react-router-dom";
 import axiosWithAuth from "../utilis/axiosWithAuth";
@@ -12,8 +12,7 @@ function Dashboard(props) {
     useEffect(() => {
         axiosWithAuth().get(`https://forume-backend.herokuapp.com/api/${username}/posts`)
             .then(res => setPosts(res.data))
-            .catch(err => navigate("/"))
-    }, [setPosts, username, navigate])
+    }, [posts,setPosts, username, navigate])
 
     return (
         <div className="forum-container">
@@ -35,8 +34,16 @@ function Dashboard(props) {
 
                 <div className="row">
                     <div className="col-12 col-md-8 offset-md-2">
-                        {
-                            posts.map(post => <Posts post={post} author={username} key={post.post_id} />)
+                   {
+                            posts.map(post => (
+
+                                <Post 
+                                    post={post} 
+                                    setPosts={setPosts}
+                                    author={username} 
+                                    key={post.post_id} />
+                               )
+                            )
                         }
                     </div>
                 </div>

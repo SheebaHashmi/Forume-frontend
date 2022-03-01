@@ -9,6 +9,11 @@ function Navbar() {
                 <h1 className="navbar-brand fw-bolder">Forume</h1>
                 <div>
                     <span className="navbar-text text-decoration-none fw-bold mx-2"
+                        onClick={() => navigate('/private/dashboard')}
+                    >
+                        Home
+                    </span>
+                    <span className="navbar-text text-decoration-none fw-bold mx-2"
                         onClick={() => navigate('/private/profile')}
                     >
                         Profile

@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import React,{useState} from 'react';
 import axios from 'axios'
 
@@ -11,6 +11,7 @@ const initialValues = {
 
 function SignUp() {
   const [formValues, setFormValues] = useState(initialValues)
+  let navigate = useNavigate()
 
   const handleChange = (e) => {
       e.preventDefault()
@@ -23,7 +24,7 @@ function SignUp() {
 
   const handleSubmit = () => {
       axios.post('https://forume-backend.herokuapp.com/api/auth/register',formValues)
-      .then(res => console.log(res.data))
+      .then(res => navigate('/'))
       .catch(err => console.log(err))
   }
 
@@ -88,13 +89,11 @@ function SignUp() {
           </div>
           <div className="row">
             <div className="col-12 col-md-3 offset-md-5 mt-3">
-              <Link to={'/dashboard'}>
                 <button 
                   className="btn btn-primary px-5"
                   type="submit" 
                   onClick = {handleSubmit}
                 >Submit</button>
-              </Link>
             </div>
           </div>
 
