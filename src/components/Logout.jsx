@@ -1,18 +1,16 @@
 import {useNavigate} from 'react-router-dom'
 import {useEffect} from 'react'; 
-import axiosWithAuth from '../utilis/axiosWithAuth';
 
-function Logout(){
-    let navigate = useNavigate()
+function Logout(props){
+  let navigate = useNavigate()
+    const {setFormValues} = props
 
     useEffect(()=> {
-        axiosWithAuth().post('/logout')
-        .then(res => {
-            window.localStorage.removeItem('token')
-            navigate('/login')
-        })
-        .catch(err => console.log(err))
-    },[])
+       localStorage.removeItem('token')
+       navigate('/')
+       setFormValues("")
+       
+    },[navigate,setFormValues])
 
     return(<div></div>) 
  }

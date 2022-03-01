@@ -1,14 +1,28 @@
-function Post() {
+import axiosWithAuth from "../utilis/axiosWithAuth";
+
+function Post(props) {
+    const {post,author} = props
+
+    const handleRemove= (e) => {
+        e.preventDefault()
+        axiosWithAuth().delete(`https://forume-backend.herokuapp.com/${author}/post/${post.post_id}`)
+        .then(res => console.log(res))
+    }
+
     return (
         <div>
             <div className="card-body">
 
-                <h2 className="fw-bold">What does the sheep say?</h2>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse blandit mollis nulla sit amet maximus. Fusce vel orci eget purus tincidunt gravida. Suspendisse mattis libero eu urna pharetra cursus. Integer sed egestas nisi, eu mollis velit. Nullam nulla magna, luctus nec metus eget, tempor accumsan ante. Maecenas suscipit tortor sed pellentesque vulputate. Duis bibendum tincidunt nunc semper tincidunt. Sed vitae arcu enim. Sed at metus sit amet nisl fermentum tristique id et nisl. Curabitur condimentum gravida justo, quis gravida nunc ultricies quis. Proin at enim egestas, venenatis ante non, varius libero. Nulla eget varius urna, sit amet luctus tortor. Aenean imperdiet nisi non egestas commodo. Nam faucibus, justo egestas vehicula vestibulum, massa neque vulputate tellus, id molestie nunc libero sed metus. In at mi lacinia, aliquet dui nec, feugiat est.
-                </p>
+                <h2 className="fw-bold">{post.post_title}</h2>
+                <p>{post.post_body} </p>
                 <hr />
-                <p>Posted by Blaise</p>
+                <div className="row">
+                <div className="col">
+                <p >Posted by {author}</p>
+                <span className="float-end mx-2" >Edit</span>
+                <span className="float-end" onClick={handleRemove}>Remove</span>
+                </div>
+                </div>
             </div>
         </div>
     )

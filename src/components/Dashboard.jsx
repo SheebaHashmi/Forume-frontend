@@ -3,6 +3,8 @@ import {useEffect} from 'react'
 import { useNavigate } from "react-router-dom";
 import axiosWithAuth from "../utilis/axiosWithAuth";
 
+import Logout from "./Logout";
+
 function Dashboard(props) {
     const {username,posts,setPosts} = props
     let navigate = useNavigate()
@@ -10,7 +12,8 @@ function Dashboard(props) {
     useEffect(()=> {
         axiosWithAuth().get(`https://forume-backend.herokuapp.com/api/${username}/posts`)
         .then(res => setPosts(res.data))
-    },[setPosts,username])
+        .catch(err => navigate("/"))
+    },[setPosts,username,navigate])
 
     return (
         <div className="forum-container">
@@ -24,9 +27,8 @@ function Dashboard(props) {
                         >
                             Profile
                         </span>
-                         <span className="navbar-text text-decoration-none fw-bold mx-2" 
-                            onClick={()=>navigate('/private/logout')}
-                        >
+                         <span className="navbar-text text-decoration-none fw-bold mx-2"
+                         onClick={()=>navigate('/private/logout')}>
                            Logout
                         </span>
 
@@ -38,14 +40,19 @@ function Dashboard(props) {
 
                 <div className="row">
                     <div className="col-12 col-md-5 my-2 offset-md-6">
-                        <button className="btn btn-primary btn-lg mt-2 mx-3 shadow float-end">Start a New Topic</button>
+                        <button 
+                            className="btn btn-primary btn-lg mt-2 mx-3 shadow float-end"
+                            onClick={()=>navigate('/private/addPost')}
+                        >
+                            Start a New Topic
+                        </button>
                     </div>
                 </div>
 
                 <div className="row">
                     <div className="col-12 col-md-8 offset-md-2">
                         {
-                            posts.map(post => <Posts posts={post}/>)
+                            posts.map(post => <Posts post={post} author={username} key={post.post_id}/>)
                         }
                     </div>
                 </div>

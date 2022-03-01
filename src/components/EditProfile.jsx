@@ -1,6 +1,17 @@
 import { Link } from 'react-router-dom';
+import axiosWithAuth from '../utilis/axiosWithAuth';
 
-function EditProfile() {
+function EditProfile(props) {
+    const {formValues,setFormValues}  = props
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        axiosWithAuth().put(`https://forume-backend.herokuapp.com/${formValues.username}/profile`)
+        .then(res => {
+            setFormValues(res.data)
+        })
+    }
+
     return (
         <div className="forum-container">
             <div className="forum-content">
@@ -10,7 +21,7 @@ function EditProfile() {
 
                     <div className="row">
                         <div className="col-12 col-md-6 mb-2 offset-md-3">
-                            <label className="form-label fw-bold">Fullname: </label>
+                            <label className="form-label fw-bold">Fullname: {formValues.fullname}</label>
                             <input
                                 type="text"
                                 name="fullname"
@@ -21,7 +32,7 @@ function EditProfile() {
 
                     <div className="row">
                         <div className="col-12 col-md-6 mb-2 offset-md-3">
-                            <label className="form-label fw-bold">Email: </label>
+                            <label className="form-label fw-bold">Email: {formValues.email}</label>
                             <input
                                 type="text"
                                 name="email"
@@ -32,7 +43,7 @@ function EditProfile() {
 
                     <div className="row">
                         <div className="col-12 col-md-6 mb-2 offset-md-3">
-                            <label className="form-label fw-bold">Username: </label>
+                            <label className="form-label fw-bold">Username: {formValues.username}</label>
                             <input
                                 type="text"
                                 name="username"
@@ -43,7 +54,7 @@ function EditProfile() {
                     </div>
                     <div className="row">
                         <div className="col-12 col-md-6 mb-2 offset-md-3">
-                            <label className="form-label fw-bold">Password: </label>
+                            <label className="form-label fw-bold">Password: {formValues.password}</label>
                             <input
                                 type="text"
                                 name="password"
@@ -55,7 +66,13 @@ function EditProfile() {
                     <div className="row">
                         <div className="col-12 col-md-3 offset-md-5 mt-3">
                             <Link to={'/private/profile'}>
-                                <button className="btn btn-primary px-5" type="submit">Submit</button>
+                                <button 
+                                    className="btn btn-primary px-5"
+                                    type="submit"
+                                    onClick={handleSubmit}
+                                >
+                                    Submit
+                                </button>
                             </Link>
                         </div>
                     </div>

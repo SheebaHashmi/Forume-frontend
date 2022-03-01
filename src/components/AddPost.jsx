@@ -1,87 +1,70 @@
-import React,{useState} from 'react';
+import axiosWithAuth from "../utilis/axiosWithAuth";
 import {useNavigate} from 'react-router-dom'
-import axios from 'axios'
 
-
-
-function Homepage(props) {
-    const {formValues,formErrors,setFormValues,setFormErrors} = props
-    const [disabled,setDisabled] = useState(true)
+function AddPost(props){
+    const {post, setPost,username} = props
     let navigate = useNavigate()
 
     const handleChange = (e) => {
         e.preventDefault()
-        setFormValues({
-            ...formValues,
+        setPost({
+            ...post,
             [e.target.name]:e.target.value
         })
-        setDisabled(false)
     }
-
     const handleSubmit = (e) => {
         e.preventDefault()
-        axios.post('https://forume-backend.herokuapp.com/api/auth/login',formValues)
+        axiosWithAuth().post(`https://forume-backend.herokuapp.com/api/${username}/post`,post)
         .then(res => {
-            window.localStorage.setItem('token',res.data.token)
             navigate("/private/dashboard")
-            
+            setPost({})
         })
         .catch(err => console.log(err))
-        
+
     }
 
     return (
         <div className="forum-container">
             <div className="forum-content">
-                <h1 className="text-center fw-bolder">Welcome to Forume</h1>
+                <h1 className="text-center fw-bolder">Add new post</h1>
                 <form className="container card col-11 my-5 p-4">
                     <div className="row">
                         <div className="col-12 col-md-6 mb-2 offset-md-3">
-                            <label className="form-label fw-bold">Username:</label>
-                            <input
+                            <label className="form-label fw-bold">Title:</label>
+                            <textarea
                                 className="form-control"
                                 type="text"
-                                name="username"
-                                value={formValues.username}
+                                name="post_title"
+                                value={post.post_title}
                                 onChange={handleChange}
+
                             />
-                            <div className="errors">{formErrors.username}</div>
                         </div>
                     </div>
                     <div className="row">
                         <div className="col-12 col-md-6 mb-2 offset-md-3">
-                            <label className="form-label fw-bold">Password: </label>
-                            <input
+                            <label className="form-label fw-bold">Post: </label>
+                            <textarea
                                 className="form-control"
                                 type="text"
-                                name="password"
-                                value={formValues.password}
+                                name="post_body"
+                                value={post.post_body}
                                 onChange={handleChange}
                             />
-                            <div className="errors">{formErrors.password}</div>
                         </div>
                     </div>
                     <div className="row">
                         <div className="col-12 col-md-3 offset-md-5 mt-3">
-                           
                                 <button 
                                     className="btn btn-primary px-5 mb-3"
                                     type="submit" 
-                                    disabled={disabled}
-                                    onClick = {handleSubmit}
-                                >Login</button>
+                                    onClick={handleSubmit}
+                                >Add Post</button>
                         </div>
                     </div>
-                    <div className="row">
-                        <div className="col-12 col-md-3 offset-md-5">
-                            <a className="text-decoration-none fw-bold" href="/register">Create new account</a>
-                        </div>
-                    </div>
-
                 </form>
             </div>
         </div>
     );
 }
-
-export default Homepage;
+export default AddPost;
