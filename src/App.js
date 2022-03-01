@@ -62,7 +62,12 @@ function App() {
           <Route exact path = "/private/logout" element={
             <Logout setFormValues={setFormValues}/>
             }/> 
-          <Route exact path = "/register" element={<SignUp/>}/>
+          <Route exact path = "/register" element={
+            <SignUp
+              formValues = {formValues}
+              setFormValues={setFormValues}
+            />
+            }/>
           
           <Route exact path = "/" 
             element={

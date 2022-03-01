@@ -2,15 +2,9 @@ import { useNavigate } from 'react-router-dom';
 import React,{useState} from 'react';
 import axios from 'axios'
 
-const initialValues = {
-  fullname:'',
-  email:'',
-  username:'',
-  password:''
-}
 
-function SignUp() {
-  const [formValues, setFormValues] = useState(initialValues)
+function SignUp(props) {
+  const {formValues,setFormValues} = props
   let navigate = useNavigate()
 
   const handleChange = (e) => {
