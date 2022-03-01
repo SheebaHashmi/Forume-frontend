@@ -1,33 +1,33 @@
-import React,{useState} from 'react';
-import {useNavigate} from 'react-router-dom'
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
 
 
 function Homepage(props) {
-    const {formValues,formErrors,setFormValues} = props
-    const [disabled,setDisabled] = useState(true)
+    const { formValues, formErrors, setFormValues } = props
+    const [disabled, setDisabled] = useState(true)
     let navigate = useNavigate()
 
     const handleChange = (e) => {
         e.preventDefault()
         setFormValues({
             ...formValues,
-            [e.target.name]:e.target.value
+            [e.target.name]: e.target.value
         })
         setDisabled(false)
     }
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        axios.post('https://forume-backend.herokuapp.com/api/auth/login',formValues)
-        .then(res => {
-            window.localStorage.setItem('token',res.data.token)
-            navigate("/private/dashboard")
-            
-        })
-        .catch(err => console.log(err))
-        
+        axios.post('https://forume-backend.herokuapp.com/api/auth/login', formValues)
+            .then(res => {
+                window.localStorage.setItem('token', res.data.token)
+                navigate("/private/dashboard")
+
+            })
+            .catch(err => console.log(err))
+
     }
 
     return (
@@ -63,13 +63,13 @@ function Homepage(props) {
                     </div>
                     <div className="row">
                         <div className="col-12 col-md-3 offset-md-5 mt-3">
-                           
-                                <button 
-                                    className="btn btn-primary px-5 mb-3"
-                                    type="submit" 
-                                    disabled={disabled}
-                                    onClick = {handleSubmit}
-                                >Login</button>
+
+                            <button
+                                className="btn btn-primary px-5 mb-3"
+                                type="submit"
+                                disabled={disabled}
+                                onClick={handleSubmit}
+                            >Login</button>
                         </div>
                     </div>
                     <div className="row">

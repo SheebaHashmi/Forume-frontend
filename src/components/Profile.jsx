@@ -1,20 +1,23 @@
 import { Link } from 'react-router-dom'
-import {useState,useEffect} from 'react'
+import { useState, useEffect } from 'react'
 import axiosWithAuth from '../utilis/axiosWithAuth'
+import Navbar from './Navbar'
 
 
 function Profile(props) {
-    const {username} = props.formValues
-    const [profile,setProfile] = useState({fullname:'',email:'',password:''})
+    const { username } = props.formValues
+    const [profile, setProfile] = useState({ fullname: '', email: '', password: '' })
 
-    useEffect(()=>{
+    useEffect(() => {
         axiosWithAuth().get(`https://forume-backend.herokuapp.com/api/${username}/profile`)
-        .then(res => setProfile(res.data))
-    },[setProfile,username])
+            .then(res => setProfile(res.data))
+    }, [setProfile, username])
 
 
     return (
         <div className="forum-container">
+            <Navbar />
+
             <div className="forum-content">
 
                 <h1 className="text-center fw-bolder">User Profile</h1>
