@@ -75,7 +75,7 @@ function SignUp(props) {
             <div className="col-12 col-md-6 mb-2 offset-md-3">
               <label className="form-label fw-bold">Password: </label>
               <input
-                type="text"
+                type="password"
                 name="password"
                 className="form-control"
                 value={formValues.password}
