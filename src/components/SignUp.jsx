@@ -16,10 +16,12 @@ function SignUp(props) {
 
   }
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault()
       axios.post('https://forume-backend.herokuapp.com/api/auth/register',formValues)
-      .then(res => navigate('/'))
-      .catch(err => console.log(err))
+      .then(res => (
+        navigate("/")
+      ))
   }
 
 
