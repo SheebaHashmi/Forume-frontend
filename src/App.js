@@ -58,8 +58,12 @@ function App() {
               username={formValues.username}
             />
             }/> 
-          <Route exact path = "/private/logout" element={<Logout setFormValues={setFormValues}/>}/> 
+
+          <Route exact path = "/private/logout" element={
+            <Logout setFormValues={setFormValues}/>
+            }/> 
           <Route exact path = "/register" element={<SignUp/>}/>
+          
           <Route exact path = "/" 
             element={
               <Homepage
