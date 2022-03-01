@@ -53,7 +53,7 @@ function Homepage(props) {
                             <label className="form-label fw-bold">Password: </label>
                             <input
                                 className="form-control"
-                                type="text"
+                                type="password"
                                 name="password"
                                 value={formValues.password}
                                 onChange={handleChange}
