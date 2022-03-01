@@ -10,16 +10,17 @@ import Profile from './components/Profile';
 import EditProfile from './components/EditProfile';
 
 function App() {
+  
   return (
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route exact path = "/" element={<Homepage/>}/>
-          <Route exact path = "/register" element={<SignUp/>}/>
-          <Route exact path = "/dashboard" element={<Dashboard/>}/>
-          <Route exact path = "/profile" element={<Profile/>}/>
-          <Route exact path = "/editprofile" element={<EditProfile/>}/>
           
+          <Route exact path = "/private/dashboard"  element={<Dashboard/>}/>
+          <Route exact path = "/private/profile" element={<Profile/>}/>
+          <Route exact path = "/private/editProfile" element={<EditProfile/>}/> 
+          <Route exact path = "/register" element={<SignUp/>}/>
+          <Route exact path = "/" element={<Homepage/>}/>
         </Routes>
       </BrowserRouter>
 

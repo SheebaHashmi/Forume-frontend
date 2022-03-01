@@ -1,6 +1,33 @@
 import { Link } from 'react-router-dom';
+import React,{useState} from 'react';
+import axios from 'axios'
+
+const initialValues = {
+  fullname:'',
+  email:'',
+  username:'',
+  password:''
+}
 
 function SignUp() {
+  const [formValues, setFormValues] = useState(initialValues)
+
+  const handleChange = (e) => {
+      e.preventDefault()
+      setFormValues({
+          ...formValues,
+          [e.target.name]:e.target.value
+      })
+
+  }
+
+  const handleSubmit = () => {
+      axios.post('https://forume-backend.herokuapp.com/api/auth/register',formValues)
+      .then(res => console.log(res.data))
+      .catch(err => console.log(err))
+  }
+
+
   return (
     <div className="forum-container">
       <div className="forum-content">
@@ -14,6 +41,8 @@ function SignUp() {
                 type="text"
                 name="fullname"
                 className="form-control"
+                value={formValues.fullname}
+                onChange={handleChange}
               />
             </div>
             
@@ -25,6 +54,8 @@ function SignUp() {
                 type="text"
                 name="email"
                 className="form-control"
+                value={formValues.email}
+                onChange={handleChange}
               />
             </div>
 
@@ -36,6 +67,8 @@ function SignUp() {
                 type="text"
                 name="username"
                 className="form-control"
+                value={formValues.username}
+                onChange={handleChange}
               />
             </div>
 
@@ -47,6 +80,8 @@ function SignUp() {
                 type="text"
                 name="password"
                 className="form-control"
+                value={formValues.password}
+                onChange={handleChange}
               />
             </div>
 
@@ -54,7 +89,11 @@ function SignUp() {
           <div className="row">
             <div className="col-12 col-md-3 offset-md-5 mt-3">
               <Link to={'/dashboard'}>
-                <button className="btn btn-primary px-5" type="submit">Submit</button>
+                <button 
+                  className="btn btn-primary px-5"
+                  type="submit" 
+                  onClick = {handleSubmit}
+                >Submit</button>
               </Link>
             </div>
           </div>

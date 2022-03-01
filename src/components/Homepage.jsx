@@ -1,6 +1,39 @@
-import { Link } from 'react-router-dom';
+import React,{useState} from 'react';
+import {useNavigate} from 'react-router-dom'
+import axios from 'axios'
+
+const initialValues = {
+    username:'',
+    password:''
+}
 
 function Homepage() {
+    const [disabled,setDisabled] = useState(true)
+    const [formValues, setFormValues] = useState(initialValues)
+    const [formErrors,setFormErrors] = useState(initialValues)
+    let navigate = useNavigate()
+
+    const handleChange = (e) => {
+        e.preventDefault()
+        setFormValues({
+            ...formValues,
+            [e.target.name]:e.target.value
+        })
+        setDisabled(false)
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        axios.post('https://forume-backend.herokuapp.com/api/auth/login',formValues)
+        .then(res => {
+            window.localStorage.setItem('token',res.data.token)
+            setFormErrors(initialValues)
+            navigate("/private/dashboard")
+        })
+        .catch(err => console.log(err))
+        
+    }
+
     return (
         <div className="forum-container">
             <div className="forum-content">
@@ -10,27 +43,37 @@ function Homepage() {
                         <div className="col-12 col-md-6 mb-2 offset-md-3">
                             <label className="form-label fw-bold">Username:</label>
                             <input
+                                className="form-control"
                                 type="text"
                                 name="username"
-                                className="form-control"
+                                value={formValues.username}
+                                onChange={handleChange}
                             />
+                            <div className="errors">{formErrors.username}</div>
                         </div>
                     </div>
                     <div className="row">
                         <div className="col-12 col-md-6 mb-2 offset-md-3">
                             <label className="form-label fw-bold">Password: </label>
                             <input
+                                className="form-control"
                                 type="text"
                                 name="password"
-                                className="form-control"
+                                value={formValues.password}
+                                onChange={handleChange}
                             />
+                            <div className="errors">{formErrors.password}</div>
                         </div>
                     </div>
                     <div className="row">
                         <div className="col-12 col-md-3 offset-md-5 mt-3">
-                            <Link to={'/dashboard'}>
-                                <button className="btn btn-primary px-5 mb-3" type="submit">Login</button>
-                            </Link>
+                           
+                                <button 
+                                    className="btn btn-primary px-5 mb-3"
+                                    type="submit" 
+                                    disabled={disabled}
+                                    onClick = {handleSubmit}
+                                >Login</button>
                         </div>
                     </div>
                     <div className="row">

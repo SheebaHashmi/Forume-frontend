@@ -1,17 +1,28 @@
 import Posts from "./Posts";
+import {useEffect} from 'react'
+import axiosWithAuth from "../utilis/axiosWithAuth";
 
 function Dashboard() {
+
+    // useEffect(()=> {
+    //     axiosWithAuth().get()
+    // })
+
     return (
         <div className="forum-container">
             
             <nav className="navbar navbar-light bg-light">
                 <div className="container-fluid">
                     <h1 className="navbar-brand fw-bolder">Forume</h1>
-                    <a className="navbar-text text-decoration-none fw-bold" href="/profile">Profile</a>
+                    <div>
+                    <a className="navbar-text text-decoration-none fw-bold mx-2" href="/private/profile">Profile</a>
+                    <a className="navbar-text text-decoration-none fw-bold" href="/private/logout">Logout</a>
+
+                    </div>
                 </div>
             </nav>
 
-            <div className="conatiner">
+            <div className="container">
 
                 <div className="row">
                     <div className="col-12 col-md-5 my-2 offset-md-6">
