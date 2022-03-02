@@ -4,7 +4,7 @@ import axios from 'axios'
 
 
 function Homepage(props) {
-    const { formValues, setUser, setFormValues } = props
+    const { formValues, setFormValues } = props
     
     const [disabled, setDisabled] = useState(true)
     let navigate = useNavigate()
@@ -23,8 +23,8 @@ function Homepage(props) {
         axios.post('https://forume-backend.herokuapp.com/api/auth/login', formValues)
             .then(res => {
                 window.localStorage.setItem('token', res.data.token)
-                window.localStorage.setItem('username',res.data.user.username)
                 navigate("/private/dashboard")
+                window.localStorage.setItem('username',res.data.user.username)
 
             })
 
@@ -33,7 +33,7 @@ function Homepage(props) {
     return (
         <div className="forum-container">
             <div className="forum-content">
-                <h1 className="text-center fw-bolder">Welcome to Forume</h1>
+                <h1 className="text-center fw-bolder">Welcome to PostIt</h1>
                 <form className="container card col-11 my-5 p-4">
                     <div className="row">
                         <div className="col-12 col-md-6 mb-2 offset-md-3">

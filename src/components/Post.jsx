@@ -24,7 +24,7 @@ function Post(props) {
                 <div className="row">
                 <div className="col">
                 <p >Posted by {username}</p>
-                <span className="float-end" onClick={handleRemove}>Remove</span>
+                <span className="text-danger float-end" onClick={handleRemove}>Remove</span>
                 </div>
                 </div>
             </div>

@@ -14,7 +14,7 @@ function Dashboard(props) {
         axiosWithAuth().get(`https://forume-backend.herokuapp.com/api/${username}/posts`)
             .then(res => setPosts(res.data))
             .catch(err =>console.log(err))
-    }, [])
+    }, [setPosts,username])
 
     return (
         <div className="forum-container">
