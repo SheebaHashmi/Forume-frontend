@@ -7,6 +7,7 @@ function Logout(props){
 
     useEffect(()=> {
        localStorage.removeItem('token')
+       localStorage.removeItem('username')
        navigate('/')
        setFormValues("")
        

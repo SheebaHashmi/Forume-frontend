@@ -6,7 +6,7 @@ function Navbar() {
     return (
         <nav className="navbar navbar-light bg-light">
             <div className="container-fluid">
-                <h1 className="navbar-brand fw-bolder">Forume</h1>
+                <h1 className="navbar-brand fw-bolder">PostIt</h1>
                 <div>
                     <span className="navbar-text text-decoration-none fw-bold mx-2"
                         onClick={() => navigate('/private/dashboard')}

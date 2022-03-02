@@ -3,9 +3,9 @@ import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
 
-
 function Homepage(props) {
-    const { formValues, formErrors, setFormValues } = props
+    const { formValues, setUser, setFormValues } = props
+    
     const [disabled, setDisabled] = useState(true)
     let navigate = useNavigate()
 
@@ -23,13 +23,13 @@ function Homepage(props) {
         axios.post('https://forume-backend.herokuapp.com/api/auth/login', formValues)
             .then(res => {
                 window.localStorage.setItem('token', res.data.token)
+                window.localStorage.setItem('username',res.data.user.username)
                 navigate("/private/dashboard")
 
             })
-            .catch(err => console.log(err))
 
     }
-
+    
     return (
         <div className="forum-container">
             <div className="forum-content">
@@ -45,7 +45,6 @@ function Homepage(props) {
                                 value={formValues.username}
                                 onChange={handleChange}
                             />
-                            <div className="errors">{formErrors.username}</div>
                         </div>
                     </div>
                     <div className="row">
@@ -58,7 +57,6 @@ function Homepage(props) {
                                 value={formValues.password}
                                 onChange={handleChange}
                             />
-                            <div className="errors">{formErrors.password}</div>
                         </div>
                     </div>
                     <div className="row">

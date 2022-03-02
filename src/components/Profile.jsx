@@ -5,7 +5,7 @@ import Navbar from './Navbar'
 
 
 function Profile(props) {
-    const { username } = props.formValues
+    const username = window.localStorage.getItem('username')
     const [profile, setProfile] = useState({ fullname: '', email: '', password: '' })
 
     useEffect(() => {

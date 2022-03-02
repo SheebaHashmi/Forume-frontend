@@ -3,7 +3,8 @@ import {useNavigate} from 'react-router-dom'
 import Navbar from "./Navbar";
 
 function AddPost(props){
-    const {post, setPost,username} = props
+    const {post, setPost} = props
+    const username = window.localStorage.getItem('username')
     let navigate = useNavigate()
 
     const handleChange = (e) => {

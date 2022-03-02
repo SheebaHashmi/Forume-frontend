@@ -2,13 +2,15 @@ import axiosWithAuth from "../utilis/axiosWithAuth";
 import {useNavigate} from 'react-router-dom'
 
 function Post(props) {
-    const {post,setPosts,author} = props
+    const {post,username} = props
     const navigate = useNavigate()
     
     const handleRemove= () => {
         axiosWithAuth()
-        .delete(`https://forume-backend.herokuapp.com/api/${author}/post/${post.post_id}`)
-        .then(res => navigate('/private/dashboard'))
+        .delete(`https://forume-backend.herokuapp.com/api/${username}/post/${post.post_id}`)
+        .then(res => {
+            navigate('/private/dashboard')
+        })
     }
 
     return (
@@ -20,7 +22,7 @@ function Post(props) {
                 <hr />
                 <div className="row">
                 <div className="col">
-                <p >Posted by {author}</p>
+                <p >Posted by {username}</p>
                 <span className="float-end" onClick={handleRemove}>Remove</span>
                 </div>
                 </div>

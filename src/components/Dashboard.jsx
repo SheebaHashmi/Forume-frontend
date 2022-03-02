@@ -6,12 +6,14 @@ import axiosWithAuth from "../utilis/axiosWithAuth";
 import Navbar from "./Navbar";
 
 function Dashboard(props) {
-    const { username, posts, setPosts } = props
+    const {  posts, setPosts } = props
+    const username = window.localStorage.getItem('username')
     let navigate = useNavigate()
 
     useEffect(() => {
         axiosWithAuth().get(`https://forume-backend.herokuapp.com/api/${username}/posts`)
             .then(res => setPosts(res.data))
+            .catch(err =>console.log(err))
     }, [])
 
     return (
@@ -27,7 +29,7 @@ function Dashboard(props) {
                             className="btn btn-primary btn-lg mt-2 mx-3 shadow float-end"
                             onClick={() => navigate('/private/addPost')}
                         >
-                            Start a New Topic
+                            Add a New Post
                         </button>
                     </div>
                 </div>
@@ -40,7 +42,7 @@ function Dashboard(props) {
                                 <Post 
                                     post={post} 
                                     setPosts={setPosts}
-                                    author={username} 
+                                    username={username} 
                                     key={post.post_id} />
                                )
                             )

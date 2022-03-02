@@ -11,7 +11,7 @@ import EditProfile from './components/EditProfile';
 import Logout from './components/Logout'
 import AddPost from './components/AddPost';
 
-const initialValues = {
+let initialValues = {
   fullname:'',
   username:'',
   email:'',
@@ -22,7 +22,7 @@ const initialValues = {
 function App() {
 
   const [formValues, setFormValues] = useState(initialValues)
-  const [formErrors,setFormErrors] = useState(initialValues)
+  const [user,setUser] = useState({})
   const [posts,setPosts] = useState([])
   const [post,setPost] = useState({post_title:'',post_body:''})
   
@@ -34,7 +34,6 @@ function App() {
           <Route exact path = "/private/dashboard"  
             element={
             <Dashboard 
-            username={formValues.username}
             posts={posts}
             setPosts={setPosts}
             />}
@@ -55,12 +54,13 @@ function App() {
             <AddPost 
               post ={post} 
               setPost={setPost}
-              username={formValues.username}
             />
             }/> 
 
           <Route exact path = "/private/logout" element={
-            <Logout setFormValues={setFormValues}/>
+            <Logout 
+              setFormValues={setFormValues}
+            />
             }/> 
           <Route exact path = "/register" element={
             <SignUp
@@ -73,8 +73,7 @@ function App() {
             element={
               <Homepage
                 formValues={formValues}
-                formErrors={formErrors}
-                setFormErrors={setFormErrors}
+                setUser={setUser}
                 setFormValues={setFormValues}
                />}
           />
