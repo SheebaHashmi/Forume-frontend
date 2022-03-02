@@ -2,7 +2,7 @@ import axiosWithAuth from "../utilis/axiosWithAuth";
 import {useNavigate} from 'react-router-dom'
 
 function Post(props) {
-    const {post,setPosts,username} = props
+    const {post,username} = props
     const navigate = useNavigate()
     
     const handleRemove= () => {
