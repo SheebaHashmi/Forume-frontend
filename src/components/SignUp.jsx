@@ -2,6 +2,12 @@ import { useNavigate } from 'react-router-dom';
 import React,{useState} from 'react';
 import axios from 'axios'
 
+const initialValues = {
+  fullname:'',
+  username:'',
+  email:'',
+  password:'',
+}
 
 function SignUp(props) {
   const {formValues,setFormValues} = props
@@ -21,7 +27,7 @@ function SignUp(props) {
       axios.post('https://forume-backend.herokuapp.com/api/auth/register',formValues)
       .then(res => {
         navigate("/")
-        setFormValues("")
+        setFormValues(initialValues)
   })
   }
 

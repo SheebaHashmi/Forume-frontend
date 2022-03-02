@@ -11,7 +11,7 @@ function Profile(props) {
     useEffect(() => {
         axiosWithAuth().get(`https://forume-backend.herokuapp.com/api/${username}/profile`)
             .then(res => setProfile(res.data))
-    }, [setProfile, username])
+    }, [])
 
 
     return (
