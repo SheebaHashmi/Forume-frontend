@@ -2,7 +2,7 @@ import axiosWithAuth from "../utilis/axiosWithAuth";
 import {useNavigate} from 'react-router-dom'
 
 function Post(props) {
-    const {post,username} = props
+    const {post,setPosts,username} = props
     const navigate = useNavigate()
     
     const handleRemove= () => {
@@ -10,6 +10,7 @@ function Post(props) {
         .delete(`https://forume-backend.herokuapp.com/api/${username}/post/${post.post_id}`)
         .then(res => {
             navigate('/private/dashboard')
+            window.location.reload(false)
         })
     }
 
