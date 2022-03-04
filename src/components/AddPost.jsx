@@ -18,7 +18,7 @@ function AddPost(props){
         e.preventDefault()
         axiosWithAuth().post(`https://forume-backend.herokuapp.com/api/${username}/post`,post)
         .then(res => {
-            navigate("/private/dashboard")
+            navigate("/dashboard")
             setPost({})
         })
         .catch(err => console.log(err))

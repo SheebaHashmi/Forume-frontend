@@ -27,7 +27,7 @@ function Profile(props) {
                         <h4 className="fw-bold">Username: {username || profile.username}</h4>
                         <h4 className="fw-bold">Fullname: {profile.fullname}</h4>
                         <h4 className="fw-bold">Email: {profile.email}</h4>
-                        <Link to={'/private/editProfile'}>
+                        <Link to={'/profile/edit'}>
                             <button className="btn btn-primary px-5 mt-4">Edit Profile</button>
                         </Link>
                     </div>

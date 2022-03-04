@@ -19,7 +19,7 @@ function Dashboard(props) {
     return (
         <div className="forum-container">
 
-            <Navbar />
+            <Navbar/>
 
             <div className="container">
 
@@ -27,7 +27,7 @@ function Dashboard(props) {
                     <div className="col-12 col-md-5 my-2 offset-md-6">
                         <button
                             className="btn btn-primary btn-lg mt-2 mx-3 shadow float-end"
-                            onClick={() => navigate('/private/addPost')}
+                            onClick={() => navigate('/posts/add')}
                         >
                             Add a New Post
                         </button>

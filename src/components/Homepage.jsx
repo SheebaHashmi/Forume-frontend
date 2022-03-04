@@ -23,7 +23,7 @@ function Homepage(props) {
         axios.post('https://forume-backend.herokuapp.com/api/auth/login', formValues)
             .then(res => {
                 window.localStorage.setItem('token', res.data.token)
-                navigate("/private/dashboard")
+                navigate("/dashboard")
                 window.localStorage.setItem('username',res.data.user.username)
 
             })

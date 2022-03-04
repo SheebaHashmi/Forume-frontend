@@ -20,7 +20,7 @@ function EditProfile(props) {
         axiosWithAuth().put(`https://forume-backend.herokuapp.com/api/${formValues.username}/profile`, formValues)
             .then(res => {
                 setFormValues(res.data)
-                navigate('/private/profile')
+                navigate('/profile')
             })
     }
 

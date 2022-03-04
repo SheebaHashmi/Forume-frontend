@@ -9,7 +9,7 @@ function Post(props) {
         axiosWithAuth()
         .delete(`https://forume-backend.herokuapp.com/api/${username}/post/${post.post_id}`)
         .then(res => {
-            navigate('/private/dashboard')
+            navigate('/dashboard')
             window.location.reload(false)
         })
     }

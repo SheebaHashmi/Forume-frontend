@@ -9,17 +9,17 @@ function Navbar() {
                 <h1 className="navbar-brand fw-bolder">PostIt</h1>
                 <div>
                     <span className="navbar-text text-decoration-none fw-bold mx-2"
-                        onClick={() => navigate('/private/dashboard')}
+                        onClick={() => navigate('/dashboard')}
                     >
                         Home
                     </span>
                     <span className="navbar-text text-decoration-none fw-bold mx-2"
-                        onClick={() => navigate('/private/profile')}
+                        onClick={() => navigate('/profile')}
                     >
                         Profile
                     </span>
                     <span className="navbar-text text-decoration-none fw-bold mx-2"
-                        onClick={() => navigate('/private/logout')}>
+                        onClick={() => navigate('/logout')}>
                         Logout
                     </span>
 

@@ -10,6 +10,7 @@ import Profile from './components/Profile';
 import EditProfile from './components/EditProfile';
 import Logout from './components/Logout'
 import AddPost from './components/AddPost';
+import PrivateRoute from './utilis/PrivateRoute'
 
 let initialValues = {
   fullname:'',
@@ -31,33 +32,41 @@ function App() {
       <BrowserRouter>
         <Routes>
           
-          <Route exact path = "/private/dashboard"  
+          <Route exact path = "/dashboard"  
             element={
-            <Dashboard 
-            posts={posts}
-            setPosts={setPosts}
-            />}
-            />
-          <Route exact path = "/private/profile" element={
+              <PrivateRoute>
+                <Dashboard 
+                posts={posts}
+                setPosts={setPosts}
+                />
+              </PrivateRoute>
+            }/> 
+          <Route exact path = "/profile" element={
+            <PrivateRoute>
               <Profile
                formValues = {formValues}
               />
+            </PrivateRoute>
             }
             />
-          <Route exact path = "/private/editProfile" element={
-            <EditProfile 
-              formValues = {formValues}
-              setFormValues={setFormValues}
-            />
+          <Route exact path = "/profile/edit" element={
+            <PrivateRoute>
+              <EditProfile 
+                formValues = {formValues}
+                setFormValues={setFormValues}
+              />
+            </PrivateRoute>
           }/> 
-          <Route exact path = "/private/addPost" element={
-            <AddPost 
-              post ={post} 
-              setPost={setPost}
-            />
+          <Route exact path = "/posts/add" element={
+            <PrivateRoute>
+              <AddPost 
+                post ={post} 
+                setPost={setPost}
+              />
+            </PrivateRoute>
             }/> 
 
-          <Route exact path = "/private/logout" element={
+          <Route exact path = "/logout" element={
             <Logout 
               setFormValues={setFormValues}
             />
