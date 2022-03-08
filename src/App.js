@@ -10,7 +10,7 @@ import Profile from './components/Profile';
 import EditProfile from './components/EditProfile';
 import Logout from './components/Logout'
 import AddPost from './components/AddPost';
-import PrivateRoute from './utilis/PrivateRoute'
+import PrivateRoute from './utilis/PrivateRoute';
 
 let initialValues = {
   fullname:'',
@@ -56,7 +56,7 @@ function App() {
                 setFormValues={setFormValues}
               />
             </PrivateRoute>
-          }/> 
+          }/>
           <Route exact path = "/posts/add" element={
             <PrivateRoute>
               <AddPost 

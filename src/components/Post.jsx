@@ -4,10 +4,9 @@ import {useNavigate} from 'react-router-dom'
 function Post(props) {
     const {post,username} = props
     const navigate = useNavigate()
-    
     const handleRemove= () => {
         axiosWithAuth()
-        .delete(`https://forume-backend.herokuapp.com/api/${username}/post/${post.post_id}`)
+        .delete(`https://forume-backend.herokuapp.com/api/${username}/posts/${post.post_id}`)
         .then(res => {
             navigate('/dashboard')
             window.location.reload(false)
@@ -25,6 +24,7 @@ function Post(props) {
                 <div className="col">
                 <p >Posted by {username}</p>
                 <span className="text-danger float-end" onClick={handleRemove}>Remove</span>
+               
                 </div>
                 </div>
             </div>
